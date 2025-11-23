@@ -40,7 +40,7 @@ export default function ProbabilityStatisticsPage() {
                     <p className="text-gray-400 mb-3">A variable whose value is determined by chance.</p>
                     <div className="bg-black/40 p-3 rounded text-sm text-gray-300">
                         X = outcome of dice roll<br />
-                        X ∈ {1, 2, 3, 4, 5, 6}
+                        X ∈ {"{1, 2, 3, 4, 5, 6}"}
                     </div>
                     <p className="text-xs text-gray-500 mt-2">Discrete or continuous values</p>
                 </motion.div>

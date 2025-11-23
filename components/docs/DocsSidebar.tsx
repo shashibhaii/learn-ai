@@ -9,11 +9,20 @@ import { useState } from "react";
 
 const docLinks = [
     {
-        category: "Getting Started",
+        category: "AI Fundamentals",
         items: [
-            { title: "Introduction to AI", href: "/docs/intro-to-ai" },
-            { title: "What is Machine Learning?", href: "/docs/what-is-ml" },
-            { title: "Deep Learning Basics", href: "/docs/deep-learning-basics" },
+            { title: "What is AI?", href: "/docs/what-is-ai" },
+            { title: "AI in the Real World", href: "/docs/ai-real-world" },
+            { title: "AI Terminologies", href: "/docs/ai-terminologies" },
+        ],
+    },
+    {
+        category: "Mathematics for AI",
+        items: [
+            { title: "Linear Algebra", href: "/docs/linear-algebra" },
+            { title: "Calculus for AI", href: "/docs/calculus-ai" },
+            { title: "Probability & Statistics", href: "/docs/probability-statistics" },
+            { title: "Discrete Mathematics", href: "/docs/discrete-math" },
         ],
     },
     {
@@ -25,27 +34,49 @@ const docLinks = [
         ],
     },
     {
+        category: "Data Science",
+        items: [
+            { title: "Data Collection", href: "/docs/data-collection" },
+            { title: "Data Cleaning", href: "/docs/data-cleaning" },
+            { title: "Data Visualization", href: "/docs/data-visualization" },
+            { title: "Feature Engineering", href: "/docs/feature-engineering" },
+        ],
+    },
+    {
+        category: "Machine Learning",
+        items: [
+            { title: "Supervised Learning", href: "/docs/supervised-learning" },
+            { title: "Unsupervised Learning", href: "/docs/unsupervised-learning" },
+            { title: "Reinforcement Learning", href: "/docs/reinforcement-learning" },
+            { title: "Model Evaluation", href: "/docs/model-evaluation" },
+        ],
+    },
+    {
         category: "Neural Networks",
         items: [
             { title: "Perceptrons", href: "/docs/perceptrons" },
             { title: "Activation Functions", href: "/docs/activation-functions" },
             { title: "Backpropagation", href: "/docs/backpropagation" },
+            { title: "Training Neural Networks", href: "/docs/training-neural-networks" },
         ],
     },
     {
-        category: "Advanced Networks",
+        category: "Computer Vision",
         items: [
-            { title: "Convolutional Neural Networks", href: "/docs/cnns" },
-            { title: "Recurrent Neural Networks", href: "/docs/rnns" },
-            { title: "LSTMs & GRUs", href: "/docs/lstms-grus" },
+            { title: "CNNs", href: "/docs/cnns" },
+            { title: "Image Classification", href: "/docs/image-classification" },
+            { title: "Object Detection", href: "/docs/object-detection" },
+            { title: "Image Segmentation", href: "/docs/image-segmentation" },
         ],
     },
     {
-        category: "Modern AI",
+        category: "NLP & Transformers",
         items: [
+            { title: "NLP Basics", href: "/docs/nlp-basics" },
+            { title: "Word Embeddings", href: "/docs/word-embeddings" },
+            { title: "RNNs & LSTMs", href: "/docs/rnns" },
             { title: "Transformers", href: "/docs/transformers" },
             { title: "Attention Mechanism", href: "/docs/attention" },
-            { title: "Transfer Learning", href: "/docs/transfer-learning" },
         ],
     },
     {
@@ -54,6 +85,30 @@ const docLinks = [
             { title: "GANs", href: "/docs/gans" },
             { title: "Autoencoders", href: "/docs/autoencoders" },
             { title: "Diffusion Models", href: "/docs/diffusion-models" },
+        ],
+    },
+    {
+        category: "LLM Applications",
+        items: [
+            { title: "Prompt Engineering", href: "/docs/prompt-engineering" },
+            { title: "Fine-tuning LLMs", href: "/docs/fine-tuning" },
+            { title: "LLM Evaluation", href: "/docs/llm-evaluation" },
+        ],
+    },
+    {
+        category: "RAG Systems",
+        items: [
+            { title: "Introduction to RAG", href: "/docs/rag-intro" },
+            { title: "Vector Databases", href: "/docs/vector-databases" },
+            { title: "Advanced RAG Techniques", href: "/docs/advanced-rag" },
+        ],
+    },
+    {
+        category: "AI Agents",
+        items: [
+            { title: "What are AI Agents?", href: "/docs/ai-agents-intro" },
+            { title: "ReAct & Tool Use", href: "/docs/react-agents" },
+            { title: "Multi-Agent Systems", href: "/docs/multi-agent" },
         ],
     },
     {

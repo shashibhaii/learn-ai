@@ -60,7 +60,7 @@ export default function ObjectDetectionPage() {
                     <p className="text-gray-400 mb-3">Remove duplicate detections.</p>
                     <div className="bg-black/40 p-3 rounded text-sm text-gray-300">
                         Keep highest confidence box<br />
-            Suppress overlapping boxes (IoU > threshold)
+                        Suppress overlapping boxes (IoU &gt; threshold)
                     </div>
                 </div>
             </div>

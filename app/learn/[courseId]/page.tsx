@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/Button";
 import { Card } from "@/components/ui/Card";
 import { ChevronLeft, ChevronRight, PlayCircle, CheckCircle, Lock, Menu } from "lucide-react";
@@ -18,28 +18,65 @@ const chapters = [
 
 export default function LearnPage({ params }: { params: { courseId: string } }) {
     const [sidebarOpen, setSidebarOpen] = useState(true);
+    const [isMobile, setIsMobile] = useState(false);
+
+    // Handle responsive sidebar
+    useEffect(() => {
+        const handleResize = () => {
+            const mobile = window.innerWidth < 1024;
+            setIsMobile(mobile);
+            if (mobile) {
+                setSidebarOpen(false);
+            } else {
+                setSidebarOpen(true);
+            }
+        };
+
+        // Initial check
+        handleResize();
+
+        window.addEventListener('resize', handleResize);
+        return () => window.removeEventListener('resize', handleResize);
+    }, []);
 
     return (
-        <div className="min-h-screen bg-deep-black text-white flex overflow-hidden">
+        <div className="min-h-screen bg-deep-black text-white flex overflow-hidden relative">
+            {/* Mobile Backdrop */}
+            {isMobile && sidebarOpen && (
+                <div
+                    className="fixed inset-0 bg-black/80 z-30 backdrop-blur-sm"
+                    onClick={() => setSidebarOpen(false)}
+                />
+            )}
+
             {/* Sidebar */}
             <motion.aside
-                initial={{ width: 300 }}
-                animate={{ width: sidebarOpen ? 300 : 0 }}
-                className="border-r border-white/10 bg-black/50 backdrop-blur-xl flex-shrink-0 overflow-hidden relative"
+                initial={false}
+                animate={{
+                    width: sidebarOpen ? 300 : 0,
+                    x: isMobile && !sidebarOpen ? -300 : 0
+                }}
+                className={`border-r border-white/10 bg-black/90 backdrop-blur-xl flex-shrink-0 overflow-hidden z-40 h-full ${isMobile ? "fixed left-0 top-0 bottom-0" : "relative"
+                    }`}
             >
                 <div className="p-6 border-b border-white/10 flex items-center justify-between w-[300px]">
                     <Link href="/courses" className="text-sm text-gray-400 hover:text-white flex items-center gap-2">
                         <ChevronLeft className="w-4 h-4" />
                         Back to Courses
                     </Link>
+                    {isMobile && (
+                        <Button variant="ghost" size="icon" onClick={() => setSidebarOpen(false)}>
+                            <ChevronLeft className="w-5 h-5" />
+                        </Button>
+                    )}
                 </div>
-                <div className="p-6 w-[300px]">
+                <div className="p-6 w-[300px] h-[calc(100vh-80px)] overflow-y-auto">
                     <h2 className="text-xl font-bold mb-2">Machine Learning 101</h2>
                     <div className="w-full bg-white/10 h-2 rounded-full mb-6">
                         <div className="bg-neon-blue h-full rounded-full w-[35%]" />
                     </div>
 
-                    <div className="space-y-2">
+                    <div className="space-y-2 pb-20">
                         {chapters.map((chapter) => (
                             <div
                                 key={chapter.id}
@@ -64,22 +101,30 @@ export default function LearnPage({ params }: { params: { courseId: string } }) 
             </motion.aside>
 
             {/* Main Content */}
-            <main className="flex-1 flex flex-col h-screen overflow-hidden">
-                <header className="h-16 border-b border-white/10 flex items-center px-6 justify-between bg-black/20">
-                    <Button variant="ghost" size="sm" onClick={() => setSidebarOpen(!sidebarOpen)}>
-                        <Menu className="w-5 h-5" />
-                    </Button>
+            <main className="flex-1 flex flex-col h-screen overflow-hidden w-full">
+                <header className="h-16 border-b border-white/10 flex items-center px-4 lg:px-6 justify-between bg-black/20 shrink-0">
                     <div className="flex items-center gap-4">
-                        <Button variant="outline" size="sm">Get Help</Button>
-                        <Button size="sm">Next Lesson <ChevronRight className="w-4 h-4 ml-2" /></Button>
+                        <Button variant="ghost" size="sm" onClick={() => setSidebarOpen(!sidebarOpen)}>
+                            <Menu className="w-5 h-5" />
+                        </Button>
+                        <span className="text-sm font-medium lg:hidden truncate max-w-[150px]">
+                            Machine Learning 101
+                        </span>
+                    </div>
+                    <div className="flex items-center gap-2 lg:gap-4">
+                        <Button variant="outline" size="sm" className="hidden sm:flex">Get Help</Button>
+                        <Button size="sm" className="whitespace-nowrap">
+                            <span className="hidden sm:inline">Next Lesson</span>
+                            <ChevronRight className="w-4 h-4 sm:ml-2" />
+                        </Button>
                     </div>
                 </header>
 
-                <div className="flex-1 overflow-y-auto p-8">
-                    <div className="max-w-4xl mx-auto">
-                        <div className="aspect-video bg-black rounded-xl border border-white/10 mb-8 relative overflow-hidden group">
+                <div className="flex-1 overflow-y-auto p-4 lg:p-8">
+                    <div className="max-w-4xl mx-auto pb-20">
+                        <div className="aspect-video bg-black rounded-xl border border-white/10 mb-6 lg:mb-8 relative overflow-hidden group">
                             <div className="absolute inset-0 flex items-center justify-center bg-gradient-to-br from-blue-900/20 to-purple-900/20">
-                                <PlayCircle className="w-20 h-20 text-white/50 group-hover:text-neon-blue transition-colors cursor-pointer" />
+                                <PlayCircle className="w-16 h-16 lg:w-20 lg:h-20 text-white/50 group-hover:text-neon-blue transition-colors cursor-pointer" />
                             </div>
                             <div className="absolute bottom-4 left-4 right-4 flex items-center gap-4">
                                 <div className="w-full bg-white/20 h-1 rounded-full">
@@ -89,12 +134,12 @@ export default function LearnPage({ params }: { params: { courseId: string } }) 
                             </div>
                         </div>
 
-                        <h1 className="text-3xl font-bold mb-6">Your First Neural Network</h1>
-                        <div className="prose prose-invert max-w-none">
+                        <h1 className="text-2xl lg:text-3xl font-bold mb-4 lg:mb-6">Your First Neural Network</h1>
+                        <div className="prose prose-invert max-w-none prose-sm lg:prose-base">
                             <p className="text-gray-300 leading-relaxed mb-4">
                                 In this lesson, we will build a simple neural network from scratch using Python. We'll understand the core concepts of neurons, weights, biases, and how they come together to make predictions.
                             </p>
-                            <h3 className="text-xl font-semibold text-white mb-3">Key Concepts</h3>
+                            <h3 className="text-lg lg:text-xl font-semibold text-white mb-3">Key Concepts</h3>
                             <ul className="list-disc list-inside text-gray-300 space-y-2 mb-6">
                                 <li>Structure of a Neuron</li>
                                 <li>Forward Propagation</li>
@@ -106,7 +151,7 @@ export default function LearnPage({ params }: { params: { courseId: string } }) 
                                     <span className="text-sm font-mono text-gray-400">main.py</span>
                                     <Button size="sm" variant="ghost" className="h-6 text-xs">Copy Code</Button>
                                 </div>
-                                <pre className="font-mono text-sm text-gray-300 overflow-x-auto">
+                                <pre className="font-mono text-xs lg:text-sm text-gray-300 overflow-x-auto p-2">
                                     {`import numpy as np
 
 class Neuron:

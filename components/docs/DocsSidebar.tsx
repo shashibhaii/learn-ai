@@ -172,7 +172,7 @@ export function DocsSidebar() {
             {/* Mobile Menu Button */}
             <button
                 onClick={() => setIsOpen(!isOpen)}
-                className="lg:hidden fixed bottom-6 right-6 z-50 p-4 rounded-full bg-neon-blue text-black shadow-lg hover:shadow-neon-blue/50 transition-shadow"
+                className="lg:hidden fixed bottom-6 left-6 z-50 p-4 rounded-full bg-neon-blue text-black shadow-lg hover:shadow-neon-blue/50 transition-shadow"
                 aria-label="Toggle menu"
             >
                 {isOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}

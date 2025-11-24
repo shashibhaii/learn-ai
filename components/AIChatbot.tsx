@@ -93,10 +93,12 @@ export function AIChatbot() {
                         whileHover={{ scale: 1.1 }}
                         whileTap={{ scale: 0.9 }}
                         onClick={() => setIsOpen(true)}
-                        className="fixed bottom-6 right-6 z-50 w-16 h-16 bg-gradient-to-r from-neon-blue to-neon-purple rounded-full shadow-lg shadow-neon-blue/50 flex items-center justify-center group"
+                        className="fixed bottom-6 right-6 z-50 w-16 h-16 bg-black border border-neon-blue/50 rounded-full shadow-[0_0_15px_rgba(0,243,255,0.3)] flex items-center justify-center group overflow-hidden"
                     >
-                        <MessageCircle className="w-7 h-7 text-white group-hover:scale-110 transition-transform" />
-                        <span className="absolute -top-1 -right-1 w-4 h-4 bg-green-400 rounded-full border-2 border-dark animate-pulse" />
+                        <div className="absolute inset-0 bg-gradient-to-tr from-neon-blue/20 to-neon-purple/20 group-hover:opacity-100 transition-opacity" />
+                        <div className="absolute inset-0 rounded-full border-2 border-transparent border-t-neon-blue border-r-neon-purple animate-[spin_3s_linear_infinite] opacity-50" />
+                        <Bot className="w-8 h-8 text-white relative z-10" />
+                        <span className="absolute top-3 right-3 w-2.5 h-2.5 bg-green-400 rounded-full shadow-[0_0_5px_#4ade80] animate-pulse z-20" />
                     </motion.button>
                 )}
             </AnimatePresence>
@@ -109,7 +111,7 @@ export function AIChatbot() {
                         animate={{ opacity: 1, y: 0, scale: 1 }}
                         exit={{ opacity: 0, y: 100, scale: 0.8 }}
                         transition={{ type: "spring", damping: 25, stiffness: 300 }}
-                        className="fixed bottom-6 right-6 z-50 w-96 h-[600px] glass-panel rounded-2xl border border-white/10 shadow-2xl flex flex-col overflow-hidden"
+                        className="fixed bottom-6 right-6 z-50 w-[calc(100vw-3rem)] sm:w-96 h-[min(600px,80vh)] glass-panel rounded-2xl border border-white/10 shadow-2xl flex flex-col overflow-hidden"
                     >
                         {/* Header */}
                         <div className="bg-gradient-to-r from-neon-blue/20 to-neon-purple/20 border-b border-white/10 p-4 flex items-center justify-between">
@@ -145,8 +147,8 @@ export function AIChatbot() {
                                 >
                                     <div
                                         className={`w-8 h-8 rounded-full flex items-center justify-center shrink-0 ${message.role === "user"
-                                                ? "bg-neon-purple"
-                                                : "bg-gradient-to-r from-neon-blue to-neon-purple"
+                                            ? "bg-neon-purple"
+                                            : "bg-gradient-to-r from-neon-blue to-neon-purple"
                                             }`}
                                     >
                                         {message.role === "user" ? (
@@ -161,8 +163,8 @@ export function AIChatbot() {
                                     >
                                         <div
                                             className={`inline-block px-4 py-2 rounded-2xl max-w-[80%] ${message.role === "user"
-                                                    ? "bg-neon-purple/20 border border-neon-purple/30"
-                                                    : "bg-black/40 border border-white/10"
+                                                ? "bg-neon-purple/20 border border-neon-purple/30"
+                                                : "bg-black/40 border border-white/10"
                                                 }`}
                                         >
                                             <p className="text-sm text-gray-200">{message.content}</p>

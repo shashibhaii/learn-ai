@@ -9,9 +9,11 @@ interface InteractiveCodeBlockProps {
     initialCode: string;
     expectedOutput?: string;
     language?: string;
+    title?: string;
+    description?: string;
 }
 
-export function InteractiveCodeBlock({ initialCode, expectedOutput = "Hello, AI World!", language = "python" }: InteractiveCodeBlockProps) {
+export function InteractiveCodeBlock({ initialCode, expectedOutput = "Hello, AI World!", language = "python", title, description }: InteractiveCodeBlockProps) {
     const [code, setCode] = useState(initialCode);
     const [output, setOutput] = useState<string | null>(null);
     const [isRunning, setIsRunning] = useState(false);
@@ -31,6 +33,12 @@ export function InteractiveCodeBlock({ initialCode, expectedOutput = "Hello, AI 
 
     return (
         <div className="my-8 border border-white/10 rounded-xl overflow-hidden bg-[#0a0a0a]">
+            {(title || description) && (
+                <div className="p-4 border-b border-white/10 bg-white/5">
+                    {title && <h3 className="text-lg font-semibold text-white mb-1">{title}</h3>}
+                    {description && <p className="text-sm text-gray-400">{description}</p>}
+                </div>
+            )}
             <div className="flex items-center justify-between px-4 py-2 bg-white/5 border-b border-white/10">
                 <span className="text-xs font-mono text-gray-400 uppercase">{language}</span>
                 <div className="flex gap-2">

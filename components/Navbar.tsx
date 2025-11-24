@@ -17,14 +17,14 @@ export function Navbar() {
                 </Link>
 
                 <div className="hidden md:flex items-center gap-8">
+                    <Link href="/dashboard" className="text-sm font-medium text-gray-300 hover:text-white transition-colors">
+                        Dashboard
+                    </Link>
                     <Link href="/docs/intro-to-ai" className="text-sm font-medium text-gray-300 hover:text-white transition-colors">
                         Docs
                     </Link>
                     <Link href="/courses" className="text-sm font-medium text-gray-300 hover:text-white transition-colors">
                         Courses
-                    </Link>
-                    <Link href="/about" className="text-sm font-medium text-gray-300 hover:text-white transition-colors">
-                        About
                     </Link>
                     <Link href="/community" className="text-sm font-medium text-gray-300 hover:text-white transition-colors">
                         Community
@@ -32,12 +32,19 @@ export function Navbar() {
                 </div>
 
                 <div className="flex items-center gap-4">
-                    <Link href="/login" className="text-sm font-medium text-gray-300 hover:text-white transition-colors hidden sm:block">
-                        Sign In
+                    <Link href="/profile" className="flex items-center gap-2 group">
+                        <div className="text-right hidden sm:block">
+                            <div className="text-xs text-gray-400 group-hover:text-white transition-colors">Alex Cyber</div>
+                            <div className="text-[10px] text-neon-blue">Lvl 12</div>
+                        </div>
+                        <div className="w-9 h-9 rounded-full border border-neon-blue/30 p-0.5 group-hover:border-neon-blue transition-colors">
+                            <img
+                                src="https://api.dicebear.com/7.x/avataaars/svg?seed=Alex&backgroundColor=b6e3f4"
+                                alt="Profile"
+                                className="w-full h-full rounded-full bg-black"
+                            />
+                        </div>
                     </Link>
-                    <Button size="sm" variant="primary">
-                        Get Started
-                    </Button>
                 </div>
             </div>
         </motion.nav>

@@ -5,15 +5,18 @@ import Link from "next/link";
 import { motion } from "framer-motion";
 import { Mail, Lock, ArrowRight, Sparkles } from "lucide-react";
 import { useState } from "react";
+import { useRouter } from "next/navigation";
 
 export default function LoginPage() {
+    const router = useRouter();
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
 
     const handleSubmit = (e: React.FormEvent) => {
         e.preventDefault();
-        // TODO: Implement authentication
+        // Mock authentication - redirect to dashboard
         console.log("Login:", { email, password });
+        router.push("/dashboard");
     };
 
     return (
@@ -54,6 +57,13 @@ export default function LoginPage() {
                     className="glass-panel p-8 rounded-2xl border border-white/10"
                 >
                     <form onSubmit={handleSubmit} className="space-y-6">
+                        {/* Demo Credentials Alert */}
+                        <div className="bg-blue-500/10 border border-blue-500/20 rounded-lg p-4 mb-6">
+                            <h3 className="text-neon-blue font-bold text-sm mb-1">Demo Access Credentials</h3>
+                            <p className="text-xs text-gray-400">Email: <span className="text-white font-mono">alex@cyber.net</span></p>
+                            <p className="text-xs text-gray-400">Password: <span className="text-white font-mono">any password</span></p>
+                        </div>
+
                         {/* Email Input */}
                         <div>
                             <label htmlFor="email" className="block text-sm font-medium text-gray-300 mb-2">
@@ -66,7 +76,7 @@ export default function LoginPage() {
                                     type="email"
                                     value={email}
                                     onChange={(e) => setEmail(e.target.value)}
-                                    placeholder="you@example.com"
+                                    placeholder="alex@cyber.net"
                                     required
                                     className="w-full pl-11 pr-4 py-3 bg-black/40 border border-white/10 rounded-lg text-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-neon-blue/50 focus:border-neon-blue transition-all"
                                 />
@@ -114,7 +124,7 @@ export default function LoginPage() {
                         {/* Submit Button */}
                         <Button
                             type="submit"
-                            className="w-full group"
+                            className="w-full group bg-gradient-to-r from-neon-blue to-neon-purple hover:opacity-90 text-white border-none shadow-lg shadow-purple-500/20"
                             size="lg"
                         >
                             Sign In

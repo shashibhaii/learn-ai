@@ -2,7 +2,7 @@ import { MetadataRoute } from "next";
 import fs from "fs";
 import path from "path";
 
-const BASE_URL = "https://ai-learning-portal.com";
+const BASE_URL = "https://ai.theskshaw.in";
 
 export default function sitemap(): MetadataRoute.Sitemap {
     // Static routes
